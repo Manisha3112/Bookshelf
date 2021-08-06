@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: CRUD operation
+  description: This is sample api for crud operation
+  version: '0.1'
+servers:
+  - url: 'http://localhost:1119'
+paths:
+  /user/student_information:
+    get:
+      description: To get student information
+      responses:
+        default:
+          description: Student information response
+      servers:
+        - url: 'http://localhost:1119'
+    servers:
+      - url: 'http://localhost:1119'
+  /user/create:
+    post:
+      description: To post student information
+      responses:
+        default:
+          description: Add a new information
+      servers:
+        - url: 'http://localhost:1119'
+    servers:
+      - url: 'http://localhost:1119'
+  /user/reg:
+    get:
+      description: To get information by Id
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '52'
+      responses:
+        default:
+          description: Student information response
+      servers:
+        - url: 'http://localhost:1119'
+    put:
+      description: To update information
+      parameters:
+        - name: id
+          in: query
+          allowEmptyValue: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: Update a information
+      servers:
+        - url: 'http://localhost:1119'
+    delete:
+      description: To delete a information
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '51'
+      responses:
+        default:
+          description: Delete a information
+      servers:
+        - url: 'http://localhost:1119'
+    servers:
+      - url: 'http://localhost:1119'

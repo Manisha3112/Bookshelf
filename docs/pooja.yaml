@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: Student-Registration
+  description: Api for student to register into a course
+  version: 1.0.0
+servers: 
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/eunimart9/student_teacher/1.0.0
+  - url: http://localhost:5000
+paths:
+  /teacher/fetch:
+    description: Teacher Resource
+    get:
+      description: fetch all teachers who are handling particular course
+      parameters: 
+        - in: query
+          name: courseName
+          required: true
+          schema: 
+            type: string
+            example: java
+      responses:
+        200:
+          description: response success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/teacher'
+  /teacher/register:
+    post:
+      description: Add a teacher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/teacher'
+      responses:
+        200:
+          description: Teacher record added successfully
+  /student/register:
+    description: To register the particular student into database
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student'
+      responses:
+        200:
+          description: Student record added successfully
+  /student/update:
+    put:
+      description: update a particular record of student
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sId:
+                  type: integer
+                  example: 102
+                courseName:
+                  type: string
+                  example: python
+                newCourse: 
+                  type: string
+                  example: java
+      responses:
+        200:
+          description: Student record updated successfully
+  /student/read:
+    get:
+      description: Read a particular records of student
+      parameters: 
+        - in: query
+          name: studentId
+          required: true
+          schema:
+            type: integer
+            example: 102
+      responses:
+        200:
+          description: successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+  /student/delete:
+    delete:
+      description: Delete a particular record of a student
+      parameters:
+        - in: query
+          name: studentId
+          required: true
+          schema:
+            properties:
+              studentId:
+                type: integer
+                example: 108
+        - in: query
+          name: courseName
+          required: true
+          schema:
+            properties:
+              courseName: 
+                type: string
+                example: java
+          
+      
+      responses:
+        200:
+          description: Successfully deleted the record
+components:
+  schemas:
+    teacher:
+      type: object
+      properties:
+        teacherId:
+          type: integer
+          example: 2
+        teacherName:
+          type: string
+          example: Pooja
+        courseName:
+          type: string
+          example: Fashion  
+    student:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          example: 11
+        studentName:
+          type: string
+          example: pooja
+        teacherId:
+          type: integer
+          example: 12
+        courseName:
+          type: string
+          example: java

@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: CRUD operation
+  description: This is sample api for crud operation
+  version: '0.1'
+servers:
+  - url: 'http://localhost:1119'
+paths:
+  /user/student_information:
+    get:
+      description: To get student information
+      responses:
+        '200':
+          description: Student information response
+          content:
+            application/json:
+              schema:
+                type: string
+              
+      
+  /user/create:
+    post:
+      description: To post student information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add'
+      responses:
+        '200':
+          description: New information is added
+          content:
+            application/json:
+              schema:
+                type: string
+              
+      
+  /user/reg:
+    get:
+      description: To get information by Id
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '52'
+      responses:
+        '200':
+          description: Student information response by id
+          content:
+            application/json:
+              schema:
+                type: string
+              
+    
+    put:
+      description: To update information
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '53'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Student_Name:
+                  type: string
+                Student_Department:
+                  type: string
+            examples:
+              '0':
+                value: "{\r\n     \"Student_Name\": \"vinotha\",\r\n        \"Student_Department\": \"ECE\"\r\n }"
+      responses:
+        '200':
+          description: Information is updated
+          content:
+            application/json:
+              schema:
+                type: string
+              
+      
+    delete:
+      description: To delete a information
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: '20'
+      responses:
+        '200':
+          description: Information is deleted
+          content:
+            application/json:
+              schema:
+                type: string
+              
+components:
+  schemas:
+    add:
+      type: object
+      properties:
+        Student_Name:
+          type: string
+        Student_Department:
+          type: string

@@ -1,0 +1,34 @@
+openapi: 3.0.1
+info:
+  title: 
+  description: Opencart api
+  version: '0.1'
+servers:
+  - url: 'https://opencarttesteuni.000webhostapp.com'
+paths:
+  /index.php:
+    get:
+      description: To get values
+      parameters:
+        - name: route
+          in: query
+          schema:
+            type: string
+          example: extension/api/v1/orders/getOrder
+        - name: order_id
+          in: query
+          schema:
+            type: string
+          example: '1'
+        - name: token
+          in: query
+          schema:
+            type: string
+          example: 64a579879bda2dd409d8ec75e30aec96
+      responses:
+        default:
+          description: Success
+      servers:
+        - url: 'https://opencarttesteuni.000webhostapp.com'
+    servers:
+      - url: 'https://opencarttesteuni.000webhostapp.com'
